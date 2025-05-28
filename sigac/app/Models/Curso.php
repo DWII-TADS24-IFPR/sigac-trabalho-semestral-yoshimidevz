@@ -19,7 +19,6 @@ class Curso extends Model
         'nome',
         'descricao',
         'carga_horaria',
-        'categoria_id',
         'nivel_id'
     ];
 

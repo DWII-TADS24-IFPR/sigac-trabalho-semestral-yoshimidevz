@@ -7,6 +7,95 @@
     <h1 class="h2">Dashboard</h1>
 </div>
 
+<!-- Seção de Acesso Rápido - Entidades Primárias -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Cadastros Primários</h5>
+                <small>Comece por aqui! Cadastre primeiro estas entidades</small>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('niveis.create') }}" class="btn btn-outline-primary w-100 py-3">
+                            <i class="fas fa-layer-group fa-2x mb-2"></i>
+                            <div>Novo Nível</div>
+                            <small class="text-muted">Cadastre primeiro</small>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('categorias.create') }}" class="btn btn-outline-primary w-100 py-3">
+                            <i class="fas fa-tags fa-2x mb-2"></i>
+                            <div>Nova Categoria</div>
+                            <small class="text-muted">Cadastre segundo</small>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('cursos.create') }}" class="btn btn-outline-primary w-100 py-3">
+                            <i class="fas fa-book fa-2x mb-2"></i>
+                            <div>Novo Curso</div>
+                            <small class="text-muted">Requer Nível</small>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('turmas.create') }}" class="btn btn-outline-primary w-100 py-3">
+                            <i class="fas fa-users fa-2x mb-2"></i>
+                            <div>Nova Turma</div>
+                            <small class="text-muted">Requer Curso</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Acesso Rápido - Entidades Secundárias -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Cadastros Secundários</h5>
+                <small>Cadastre após criar as entidades primárias</small>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('alunos.create') }}" class="btn btn-outline-success w-100 py-3">
+                            <i class="fas fa-user-graduate fa-2x mb-2"></i>
+                            <div>Novo Aluno</div>
+                            <small class="text-muted">Requer Curso e Turma</small>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('documentos.create') }}" class="btn btn-outline-success w-100 py-3">
+                            <i class="fas fa-file-pdf fa-2x mb-2"></i>
+                            <div>Novo Documento</div>
+                            <small class="text-muted">Requer Aluno e Categoria</small>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('declaracoes.create') }}" class="btn btn-outline-success w-100 py-3">
+                            <i class="fas fa-certificate fa-2x mb-2"></i>
+                            <div>Nova Declaração</div>
+                            <small class="text-muted">Requer Aluno</small>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ route('comprovantes.create') }}" class="btn btn-outline-success w-100 py-3">
+                            <i class="fas fa-file-alt fa-2x mb-2"></i>
+                            <div>Novo Comprovante</div>
+                            <small class="text-muted">Requer Aluno e Documento</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estatísticas -->
 <div class="row">
     <div class="col-md-3 mb-4">
         <div class="card bg-primary text-white h-100">
@@ -25,7 +114,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="card bg-success text-white h-100">
             <div class="card-body">
@@ -43,7 +132,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="card bg-warning text-white h-100">
             <div class="card-body">
@@ -61,7 +150,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="card bg-danger text-white h-100">
             <div class="card-body">
@@ -81,6 +170,7 @@
     </div>
 </div>
 
+<!-- Últimos registros -->
 <div class="row">
     <div class="col-md-6 mb-4">
         <div class="card">
@@ -121,7 +211,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-6 mb-4">
         <div class="card">
             <div class="card-header">
@@ -158,44 +248,6 @@
                 @else
                     <p class="text-muted">Nenhum documento emitido recentemente.</p>
                 @endif
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12 mb-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">Acesso Rápido</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ route('alunos.create') }}" class="btn btn-outline-primary w-100 py-3">
-                            <i class="fas fa-user-plus fa-2x mb-2"></i>
-                            <div>Novo Aluno</div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ route('documentos.create') }}" class="btn btn-outline-danger w-100 py-3">
-                            <i class="fas fa-file-medical fa-2x mb-2"></i>
-                            <div>Novo Documento</div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ route('turmas.create') }}" class="btn btn-outline-warning w-100 py-3">
-                            <i class="fas fa-users-cog fa-2x mb-2"></i>
-                            <div>Nova Turma</div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ route('cursos.create') }}" class="btn btn-outline-success w-100 py-3">
-                            <i class="fas fa-book-medical fa-2x mb-2"></i>
-                            <div>Novo Curso</div>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

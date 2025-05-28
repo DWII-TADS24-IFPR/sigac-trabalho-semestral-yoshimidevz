@@ -9,15 +9,15 @@ class NivelController extends Controller
 {
     public function index()
     {
-        $niveis = Nivel::orderBy('nome')
+        $nivels = Nivel::orderBy('nome')
             ->paginate(10);
 
-        return view('niveis.index', compact('niveis'));
+        return view('nivels.index', compact('nivels'));
     }
 
     public function create()
     {
-        return view('niveis.create');
+        return view('nivels.create');
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class NivelController extends Controller
             'descricao' => 'nullable|string'
         ]);
 
-        $nivel = Nivel::create($request->all());
+        $nivels = Nivel::create($request->all());
 
         return redirect()->route('niveis.index')
             ->with('success', 'Nível cadastrado com sucesso!');
@@ -35,36 +35,36 @@ class NivelController extends Controller
 
     public function show($id)
     {
-        $nivel = Nivel::findOrFail($id);
+        $nivels = Nivel::findOrFail($id);
 
-        return view('niveis.show', compact('nivel'));
+        return view('nivels.show', compact('nivel'));
     }
 
     public function edit($id)
     {
-        $nivel = Nivel::findOrFail($id);
-        return view('niveis.edit', compact('nivel'));
+        $nivels = Nivel::findOrFail($id);
+        return view('nivels.edit', compact('nivel'));
     }
 
     public function update(Request $request, $id)
     {
-        $nivel = Nivel::findOrFail($id);
+        $nivels = Nivel::findOrFail($id);
 
         $request->validate([
             'nome' => 'sometimes|string|max:255',
             'descricao' => 'nullable|string'
         ]);
 
-        $nivel->update($request->all());
+        $nivels->update($request->all());
 
-        return redirect()->route('niveis.index')
+        return redirect()->route('nivels.index')
             ->with('success', 'Nível atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
-        $nivel = Nivel::findOrFail($id);
-        $nivel->delete();
+        $nivels = Nivel::findOrFail($id);
+        $nivels->delete();
 
         return redirect()->route('niveis.index')
             ->with('success', 'Nível excluído com sucesso!');
@@ -72,10 +72,10 @@ class NivelController extends Controller
 
     public function restore($id)
     {
-        $nivel = Nivel::withTrashed()->findOrFail($id);
-        $nivel->restore();
+        $nivels = Nivel::withTrashed()->findOrFail($id);
+        $nivels->restore();
 
-        return redirect()->route('niveis.index')
+        return redirect()->route('nivels.index')
             ->with('success', 'Nível restaurado com sucesso!');
     }
 }

@@ -17,7 +17,7 @@
     <div class="card-body">
         <form action="{{ route('categorias.store') }}" method="POST">
             @csrf
-            
+
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome</label>
@@ -27,18 +27,35 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="row mb-3">
-                <div class="col-md-12">
-                    <label for="descricao" class="form-label">Descrição</label>
-                    <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" rows="4">{{ old('descricao') }}</textarea>
-                    @error('descricao')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                <div class="col-md-6">
+                    <label for="maximo_horas" class="form-label">Máximo horas</label>
+                    <textarea class="form-control @error('maximo_horas') is-invalid @enderror" id="maximo_horas" name="maximo_horas" rows="1">{{ old('maximo_horas') }}</textarea>
+                    @error('maximo_horas')
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
-            
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="curso_id" class="form-label">Curso</label>
+                    <select class="form-select @error('curso_id') is-invalid @enderror" id="curso_id" name="curso_id" required>
+                        <option value="">Selecione um curso</option>
+                        @foreach($cursos ?? [] as $curso)
+                            <option value="{{ $curso->id }}" {{ old('curso_id') == $curso->id ? 'selected' : '' }}>
+                                {{ $curso->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('curso_id')
+                        <div cl ass="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Salvar
                 </button>

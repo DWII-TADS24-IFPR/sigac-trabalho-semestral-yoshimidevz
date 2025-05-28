@@ -9,6 +9,7 @@ class CursoController extends Controller
 {
     public function index()
     {
+
         $cursos = Curso::with(['categoria', 'nivel'])
             ->orderBy('nome')
             ->paginate(10);
@@ -27,7 +28,6 @@ class CursoController extends Controller
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'carga_horaria' => 'required|integer|min:1',
-            'categoria_id' => 'required|exists:categorias,id',
             'nivel_id' => 'required|exists:niveis,id'
         ]);
 
@@ -39,7 +39,7 @@ class CursoController extends Controller
 
     public function show($id)
     {
-        $curso = Curso::with(['categoria', 'nivel'])
+        $curso = Curso::with(['nivel'])
             ->findOrFail($id);
 
         return view('cursos.show', compact('curso'));

@@ -24,10 +24,10 @@ class CategoriaController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string'
+            'maximo_horas' => 'nullable|float'
         ]);
 
-        $categoria = Categoria::create($request->all());
+        $categorias = Categoria::create($request->all());
 
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria cadastrada com sucesso!');
@@ -35,27 +35,27 @@ class CategoriaController extends Controller
 
     public function show($id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categorias = Categoria::findOrFail($id);
 
         return view('categorias.show', compact('categoria'));
     }
 
     public function edit($id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categorias = Categoria::findOrFail($id);
         return view('categorias.edit', compact('categoria'));
     }
 
     public function update(Request $request, $id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $categorias = Categoria::findOrFail($id);
 
         $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string'
         ]);
 
-        $categoria->update($request->all());
+        $categorias->update($request->all());
 
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria atualizada com sucesso!');
@@ -63,8 +63,8 @@ class CategoriaController extends Controller
 
     public function destroy($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
+        $categorias = Categoria::findOrFail($id);
+        $categorias->delete();
 
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria excluída com sucesso!');
@@ -72,8 +72,8 @@ class CategoriaController extends Controller
 
     public function restore($id)
     {
-        $categoria = Categoria::withTrashed()->findOrFail($id);
-        $categoria->restore();
+        $categorias = Categoria::withTrashed()->findOrFail($id);
+        $categorias->restore();
 
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria restaurada com sucesso!');

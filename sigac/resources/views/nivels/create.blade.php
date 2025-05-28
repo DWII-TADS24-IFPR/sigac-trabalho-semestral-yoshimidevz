@@ -17,7 +17,7 @@
     <div class="card-body">
         <form action="{{ route('niveis.store') }}" method="POST">
             @csrf
-            
+
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome</label>
@@ -27,7 +27,7 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="descricao" class="form-label">Descrição</label>
@@ -37,7 +37,7 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Salvar

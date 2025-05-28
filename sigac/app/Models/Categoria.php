@@ -13,7 +13,8 @@ class Categoria extends Model
     protected $table = 'categorias';
     protected $fillable = [
         'nome',
-        'descricao'
+        'maximo_horas',
+        'curso_id'
     ];
 
     protected $dates = ['deleted_at'];

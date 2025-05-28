@@ -36,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($niveis as $nivel)
+                    @forelse($nivels as $nivel)
                     <tr>
                         <td>{{ $nivel->id }}</td>
                         <td>{{ $nivel->nome }}</td>
@@ -71,10 +71,10 @@
     <div class="card-footer">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                Exibindo {{ $niveis->count() }} de {{ $niveis->total() }} níveis
+                Exibindo {{ $nivels->count() }} de {{ $nivels->total() }} níveis
             </div>
             <div>
-                {{ $niveis->links() }}
+                {{ $nivels->links() }}
             </div>
         </div>
     </div>
