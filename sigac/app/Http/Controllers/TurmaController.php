@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turma;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class TurmaController extends Controller
@@ -18,7 +19,9 @@ class TurmaController extends Controller
 
     public function create()
     {
-        return view('turmas.create');
+        $cursos = Curso::orderBy('nome')->get();
+
+        return view('turmas.create', compact('cursos'));
     }
 
     public function store(Request $request)
@@ -48,7 +51,9 @@ class TurmaController extends Controller
     public function edit($id)
     {
         $turma = Turma::findOrFail($id);
-        return view('turmas.edit', compact('turma'));
+        $cursos = Curso::orderBy('nome')->get();
+
+        return view('turmas.edit', compact('turma', 'cursos'));
     }
 
     public function update(Request $request, $id)

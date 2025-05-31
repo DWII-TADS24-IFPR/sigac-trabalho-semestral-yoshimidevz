@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
     public function index()
     {
-
         $cursos = Curso::with(['categoria', 'nivel'])
             ->orderBy('nome')
             ->paginate(10);
@@ -19,16 +19,19 @@ class CursoController extends Controller
 
     public function create()
     {
-        return view('cursos.create');
+        $nivels = Nivel::orderBy('nome')->get();
+
+        return view('cursos.create', compact('nivels'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string',
-            'carga_horaria' => 'required|integer|min:1',
-            'nivel_id' => 'required|exists:niveis,id'
+            'nome' => 'sometimes|string|max:255',
+            'sigla' => 'sometimes|string|max:10',
+            'carga_horaria' => 'sometimes|integer|min:1',
+            'eixo_id' => 'sometimes|exists:eixos,id',
+            'nivel_id' => 'sometimes|exists:nivels,id'
         ]);
 
         $curso = Curso::create($request->all());
@@ -48,7 +51,10 @@ class CursoController extends Controller
     public function edit($id)
     {
         $curso = Curso::findOrFail($id);
-        return view('cursos.edit', compact('curso'));
+
+        $nivels = Nivel::orderBy('nome')->get();
+
+        return view('cursos.edit', compact('curso', 'nivels'));
     }
 
     public function update(Request $request, $id)
@@ -57,10 +63,10 @@ class CursoController extends Controller
 
         $request->validate([
             'nome' => 'sometimes|string|max:255',
-            'descricao' => 'nullable|string',
+            'sigla' => 'sometimes|string|max:10',
             'carga_horaria' => 'sometimes|integer|min:1',
-            'categoria_id' => 'sometimes|exists:categorias,id',
-            'nivel_id' => 'sometimes|exists:niveis,id'
+            'eixo_id' => 'sometimes|exists:eixos,id',
+            'nivel_id' => 'sometimes|exists:nivels,id'
         ]);
 
         $curso->update($request->all());

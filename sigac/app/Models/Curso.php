@@ -9,6 +9,7 @@ use App\Models\Aluno;
 use App\Models\Categoria;
 use App\Models\Nivel;
 use App\Models\Turma;
+use App\Models\Eixo;
 
 class Curso extends Model
 {
@@ -17,8 +18,9 @@ class Curso extends Model
     protected $table = 'cursos';
     protected $fillable = [
         'nome',
-        'descricao',
+        'sigla',
         'carga_horaria',
+        'eixo_id',
         'nivel_id'
     ];
 
@@ -48,5 +50,10 @@ class Curso extends Model
     public function turmas()
     {
         return $this->hasMany(Turma::class);
+    }
+
+    public function eixo()
+    {
+        return $this->belongsTo(Eixo::class);
     }
 }
